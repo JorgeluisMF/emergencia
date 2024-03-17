@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Formulario Emergencias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col sizeMd="6" class="ion-padding">
+        <h1 class="ion-text-center">Formulario</h1>
+        <form #miForm="ngForm" (ngSubit)="saveEmergencia(miForm)">
+          <ion-item class="py-2">
+            <ion-label position="floating">Titulo</ion-label>
+            <ion-input name="titulo" ngModel placeholder="Titulo de Emergencia"></ion-input>
+          </ion-item>
+          <ion-item class="py-2">
+            <ion-label >Fecha</ion-label>
+            <ion-input type="date" name="fecha" id="fecha" ngModel></ion-input>
+          </ion-item>
+          <ion-item class="py-2">
+            <ion-label position="floating">describcion</ion-label>
+            <ion-textarea name="describcion" ngModel placeholder="Descripcion de la Emergencia">
+            </ion-textarea>
+          </ion-item>
+
+          <div class="row py-2">
+            <div class="col-md-6">
+              <ion-button expand="block" size="small" fill="outline" type="button" (click)="addPhotoToGallery()">
+                <ion-icon slot="start" name="camera_outline"></ion-icon>
+                Tomar Foto
+              </ion-button>
+              <ion-button expand="block" size="small" fill="outline" type="button" (click)="clearImage()">
+                <ion-icon slot="start" name="trash_outline"></ion-icon>
+                Eliminar Foto
+              </ion-button>
+            </div>
+
+            <ion-item class="py-2" *ngIf="image">
+              <img [src]="image" alt="Image_emergencia">
+            </ion-item>
+
+          </div>
+          
+          <ion-button expand="block" class="mt-2" type="button">
+            Guardar
+          </ion-button>
+         
+       </form>
+      </ion-col>
+      <ion-col sizeMd="6" clas="ion-padding" ngIf="data.length > 0">
+        <app-list-emergencias [listOfEmergencias]="data"></app-list-emergencias>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

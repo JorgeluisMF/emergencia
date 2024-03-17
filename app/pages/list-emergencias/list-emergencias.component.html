@@ -1,0 +1,24 @@
+<div *ngIf="listOfEmergencias.length > 0"> 
+   <h1 class="ion-text-center">Listado de emergencias</h1>
+   <ion-grid class="mt-2">
+    <ion-button expand="block" size="small" fill="outline" type="button" (click)="clearData()">
+      Borrar Todo
+    </ion-button>
+    <ion-row>
+      <ion-col sizeMd="6" ngFor="let emergencia of listOfEmergencias">
+        <ion-card color="ligth">
+          <img [src]="convertPhotoFromBase64(emergencia.image)" alt="Image_emergencia">
+          <ion-card-header class="ion-text-center">titulo: {{emergencia.titulo}}</ion-card-header>
+
+          <ion-card-content>
+            <div class="descripcion">
+              <h3 class="ion-text-center">Descripcion: {{emergencia.describcion}}</h3>
+            </div>
+            <p class="ion-text-center">Fecha: {{emergencia.fecha | date}}</p>
+          </ion-card-content>
+        </ion-card>
+        
+      </ion-col>
+    </ion-row>
+   </ion-grid>
+</div>
